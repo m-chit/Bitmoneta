@@ -1,0 +1,79 @@
+@import "../constants.scss";
+
+.Dashboard {
+  width: 50vw;
+  box-sizing: border-box;
+  box-shadow: 11px 4px 12px 0em rgba(0, 0, 0, 0.158);
+  font-family: "Source Code Pro", monospace;
+
+  &__navbar {
+    background-color: $background_title_nav;
+
+    &--title {
+      @extend .flexCenter;
+      padding: 10px;
+      font-family: "Fredoka One", cursive;
+
+      color: #fff;
+      font-size: 2rem;
+    }
+
+    .Bid {
+      background-color: $bid_color;
+    }
+    .Ask {
+      background-color: $ask_color;
+    }
+
+    &--tableTop {
+      display: flex;
+      align-items: center;
+      padding: 3px 0 3px 10px;
+
+      div {
+        width: 30%;
+
+        &:last-child {
+          width: 10%;
+        }
+      }
+    }
+  }
+
+  &__list {
+    background-color: $background_list1;
+
+    &--element {
+      display: flex;
+      padding-left: 10px;
+
+      &:nth-child(2n) {
+        background-color: $background_list2;
+      }
+
+      &:hover {
+        background-color: $additional_color_hover;
+      }
+      div {
+        width: 30%;
+
+        &:last-child {
+          width: 10%;
+        }
+      }
+    }
+  }
+
+  &:first-child {
+    border-right: solid 2px $background_color;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .Dashboard {
+    width: 100vw;
+    &:first-child {
+      border-right: none;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@import "../constants.scss";
+
+.Logo {
+  @extend .flexCenter;
+  padding-top: 20px;
+
+  &__icon {
+    height: 100px;
+    width: 100px;
+
+    &:hover {
+      animation-name: rotation;
+      animation-duration: 1s;
+    }
+  }
+
+  &__title {
+    font-family: "Fredoka One", cursive;
+    font-size: 4rem;
+    padding-left: 20px;
+    color: $additional_color_normal;
+  }
+}
+
+@keyframes rotation {
+  100% {
+    transform: rotate(360deg);
+  }
+}

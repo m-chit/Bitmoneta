@@ -1,0 +1,106 @@
+@import "../constants";
+
+.Navbar {
+  font-family: "Fredoka One", cursive;
+  width: 100vw;
+  background-color: $navbar_color_light;
+  box-sizing: border-box;
+  padding: 0 50px 0 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: $navbar_height;
+  display: flex;
+  align-items: center;
+
+  &__changeCurrency {
+    flex-basis: 20%;
+    &--button {
+      @include defaultButton(backgroundShine);
+      font-size: 2rem;
+      cursor: pointer;
+      font-family: "Source Code Pro", monospace;
+      background-color: $additional_color_normal;
+      display: flex;
+      width: fit-content;
+      padding: 0 20px;
+      height: $navbar_height;
+
+      i {
+        padding-left: 10px;
+      }
+    }
+  }
+
+  .title {
+    color: $additional_color_normal;
+  }
+
+  .number {
+    font-size: 2rem;
+  }
+
+  &__spread {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-basis: 50%;
+    flex-direction: column;
+    &--title {
+      @extend .title;
+    }
+
+    &--number {
+      @extend .number;
+    }
+  }
+
+  &__minmax {
+    flex-basis: 30%;
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 2;
+
+    &--titleMin {
+      @extend .title;
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    &--min {
+      @extend .number;
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    &--titleMax {
+      @extend .title;
+      grid-column: 1;
+      grid-row: 1;
+    }
+    &--max {
+      @extend .number;
+      grid-column: 1;
+      grid-row: 2;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .Navbar {
+    flex-direction: column;
+    height: 200px;
+    &__changeCurrency {
+      &--button {
+        width: 100vw;
+      }
+    }
+    &__spread {
+      width: 100vw;
+      text-align: center;
+    }
+    &__minmax {
+      width: 100vw;
+      text-align: center;
+    }
+  }
+}

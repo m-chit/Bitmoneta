@@ -1,0 +1,157 @@
+@import "../constants.scss";
+
+.Modal {
+  @extend .flexCenter;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalOpen {
+  animation-name: backgroundOpacity;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+
+.modalClose {
+  animation-name: backgroundOpacityBack;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+
+.modalOpenBody {
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+
+.modalCloseBody {
+  animation-name: slideBack;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+
+.Body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 600px;
+  height: 100%;
+  box-shadow: 0 0 2em rgba(0, 0, 0, 0.466);
+  padding: 20px;
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    height: 100%;
+    flex-wrap: wrap;
+
+    &--element {
+      @extend .flexCenter;
+      border: solid 1px $font_color;
+      border-radius: 10px;
+      margin: 5px;
+      padding: 5px;
+      width: 120px;
+      cursor: pointer;
+      font-family: "Source Code Pro", monospace;
+
+      &:hover {
+        animation-name: cursorOnButton;
+        animation-duration: 0.4s;
+
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+
+  &__closeButton {
+    @include defaultButton(backgroundShine, buttonShake);
+    font-size: 2.7rem;
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    right: -60px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.356);
+  }
+}
+
+@keyframes backgroundOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backgroundOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backgroundOpacityBack {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    left: -700px;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes slideBack {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -700px;
+  }
+}
+
+@keyframes cursorOnButton {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+    border: solid 1px $font_color;
+  }
+  100% {
+    background-color: $additional_color_normal;
+    color: $additional_color_normal;
+    color: $background_color;
+    border: solid 1px $additional_color_dark;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .Body {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    &__closeButton {
+      position: static;
+      align-self: flex-end;
+      margin: 0 10px 10px 0;
+    }
+  }
+}

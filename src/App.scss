@@ -1,0 +1,20 @@
+@import "../src/constants.scss";
+
+.App {
+  display: flex;
+  color: $font_color;
+  flex-direction: column;
+
+  &__orderbook {
+    display: flex;
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .App {
+    &__orderbook {
+      flex-direction: column;
+    }
+  }
+}

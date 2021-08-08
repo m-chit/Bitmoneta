@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { useEffect } from "react";
+import { useOrderBook } from "./hooks/useOrderbook";
+import Navbar from "./components/Navbar";
+import Dashboard from "./components/Dashboard";
+import Logo from "./components/Logo";
 
-function App() {
+const App = () => {
+  const {
+    buy,
+    sell,
+    spread,
+    min,
+    max,
+    currencies,
+    currentCurrency,
+    changeActualCurrency,
+    getOrderBook,
+    getMinMax,
+    handleIsOpenModal,
+    isOpenModal,
+    splitedCurrency,
+    isOpenModalAnimation,
+  } = useOrderBook();
+
+  useEffect(() => {
+    getOrderBook();
+    getMinMax();
+    const intervaGetOrderBooklId = setInterval(() => getOrderBook(), 1000);
+    const intervalMinMaxId = setInterval(getMinMax, 10000);
+    return () => {
+      clearInterval(intervaGetOrderBooklId);
+      clearInterval(intervalMinMaxId);
+    };
+  }, [currentCurrency]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Logo />
+      <Navbar
+        isOpenModalAnimation={isOpenModalAnimation}
+        currentCurrency={currentCurrency}
+        isOpenModal={isOpenModal}
+        handleIsOpenModal={handleIsOpenModal}
+        changeActualCurrency={changeActualCurrency}
+        currencies={currencies}
+        spread={spread}
+        min={min}
+        max={max}
+      />
+      <div className="App__orderbook">
+        <Dashboard name="Bid" splitedCurrency={splitedCurrency} orders={buy} />
+        <Dashboard name="Ask" splitedCurrency={splitedCurrency} orders={sell} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
